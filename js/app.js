@@ -39,11 +39,11 @@ class Enemy extends Entity {
 
     update(dt) {
         super.update();
-        if(this.isOutOfBoundsX) {
-            this.x = -1;
+        if (this.isOutOfBoundsX) {
+            this.x = -((Math.random() * 10) + 1);
         }
         else {
-            this.x += dt;
+            this.x += .075;
         }
     }
 }
@@ -51,7 +51,7 @@ class Enemy extends Entity {
 // Instantiates  objects
 
 const player = new Player();
-const allEnemies = [...Array(3)].map((_,i) => new Enemy(0, i+0.8));
+const allEnemies = [...Array(3)].map((_,i) => new Enemy((-(Math.floor(Math.random() * 6) + 1)), i+0.8));
 
 // Listens for key presses and sends the keys to the Player.handleInput() method
 
