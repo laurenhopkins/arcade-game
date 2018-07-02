@@ -25,6 +25,25 @@ class Player extends Entity {
         super();
         this.sprite += 'char-princess-girl.png';
     }
+
+    handleInput(input) {
+        switch (input) {
+            case 'left': 
+                this.x = this.x > 0 ? this.x - 1 : this.x;
+                break;
+            case 'up':
+                this.y = this.y > 0 ? this.y - 1 : this.y;
+                break;
+            case 'right':
+                this.x = this.x < 4 ? this.x + 1 : this.x;
+                break;
+            case 'down':
+                this.y = this.y < 5 ? this.y + 1 : this.y;
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 // Enemies our player must avoid
@@ -56,7 +75,7 @@ const allEnemies = [...Array(3)].map((_,i) => new Enemy((-(Math.floor(Math.rando
 // Listens for key presses and sends the keys to the Player.handleInput() method
 
 
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keydown', function(e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
