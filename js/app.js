@@ -8,7 +8,7 @@ class Entity {
     }
 
     render() {
-        ctx.drawImage(Resources.get(this.sprite), this.x = 200, this.y = 400);
+        ctx.drawImage(Resources.get(this.sprite), this.x*100, this.y*80);
     }
 }
 
@@ -24,22 +24,21 @@ class Player extends Entity {
 // Enemies our player must avoid
 
 class Enemy extends Entity {
-    constructor() {
+    constructor(x, y) {
         super();
-        this.sprite = 'enemy-bug.png';
+        this.sprite += 'enemy-bug.png';
+        this.x = x;
+        this.y = y;
     }
 }
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+// Instantiates  objects
 
-
-
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
 const player = new Player();
-//const enemy = new Enemy();
+const allEnemies = [...Array(3)].map((_,i) => new Enemy(0, i+0.8));
+
+// Listens for key presses and sends the keys to the Player.handleInput() method
+
 
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
