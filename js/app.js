@@ -20,7 +20,7 @@ class Entity {
 
    // Checks to see if charactes collide
     checkCollisions(entity) {
-        if (this.y === entity.y) {
+        if (this.y >= entity.y - 0.5 && this.y <= entity.y + 0.5) {
             if (this.x >= entity.x - 0.5 && this.x <= entity.x + 0.5) {
                 return true;
             }
@@ -75,7 +75,7 @@ class Enemy extends Entity {
             this.x = -((Math.random() * 10) + 1);
         }
         else {
-            this.x += .075;
+            this.x += .08;
         }
     }
 }
@@ -88,7 +88,7 @@ const allEnemies = [...Array(3)].map((_,i) => new Enemy((-(Math.floor(Math.rando
 // Listens for key presses and sends the keys to the Player.handleInput() method
 
 
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
@@ -97,4 +97,33 @@ document.addEventListener('keydown', function(e) {
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
+});
+
+
+// Modal
+
+const modal = document.querySelector('.modal');
+
+if (player.y === 0) {
+    toggleModal();
+}
+
+function toggleModal() {
+    modal.classList.toggle("hide");
+}
+
+// Replay game
+
+const replay = document.querySelector('.modal-replay');
+
+replay.addEventListener("click", function(){
+    location.reload(true);
+});
+
+// Close modal
+
+const closeModal = document.querySelector(".close");
+
+closeModal.addEventListener("click", function() {
+    modal.style.display = "none";
 });

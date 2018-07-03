@@ -82,6 +82,7 @@ var Engine = (function(global) {
         checkCollisions();
     }
 
+
     function checkCollisions() {
         allEnemies.forEach(enemy => {
             if (enemy.checkCollisions(player) || player.checkCollisions(enemy)) {
