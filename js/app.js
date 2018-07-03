@@ -13,8 +13,21 @@ class Entity {
 
     }
 
+    // Renders image on screen
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x*100, this.y*80);
+    }
+
+   // Checks to see if charactes collide
+    checkCollisions(entity) {
+        if (this.y === entity.y) {
+            if (this.x >= entity.x - 0.5 && this.x <= entity.x + 0.5) {
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
     }
 }
 
