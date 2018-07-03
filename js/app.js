@@ -97,6 +97,7 @@ document.addEventListener('keyup', function(e) {
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
+    checkForWin();
 });
 
 
@@ -104,12 +105,10 @@ document.addEventListener('keyup', function(e) {
 
 const modal = document.querySelector('.modal');
 
-if (player.y === 0) {
-    toggleModal();
-}
-
-function toggleModal() {
-    modal.classList.toggle("hide");
+function checkForWin() {
+    if (player.y === 0) {
+        modal.classList.toggle("hide");
+    }
 }
 
 // Replay game
